@@ -19,12 +19,9 @@ public class Student {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
-  @Column(name = "first_name")
+  @JsonProperty("firstName")
   private String firstName;
 
-  @Column(name = "last_name")
+  @JsonProperty("lastName")
   private String lastName;
-
-  @Column(name = "birth_of_date")
-  private String birthOfDate;
 }

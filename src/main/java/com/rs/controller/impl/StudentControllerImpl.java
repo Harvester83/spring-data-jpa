@@ -17,6 +17,7 @@ public class StudentControllerImpl implements IStudentController {
   @PostMapping(path = "/save")
   @Override
   public Student saveStudent(@RequestBody Student student) {
+
     return studentService.saveStudent(student);
   }
 
