@@ -7,5 +7,9 @@ import java.util.List;
 public interface IStudentService {
   public Student saveStudent(Student student);
 
+  public Student getStudentById(Integer id);
+
+  public boolean deleteStudent(Integer id);
+
   public List<Student> getAll();
 }

@@ -22,15 +22,21 @@ public class StudentControllerImpl implements IStudentController {
     return studentService.saveStudent(student);
   }
 
+  @GetMapping(path = "/{id}")
+  @Override
+  public Student getStudentById(@PathVariable(name = "id") Integer id) {
+    return studentService.getStudentById(id);
+  }
+
+  @DeleteMapping(path = "/{id}")
+  @Override
+  public boolean deleteStudent(@PathVariable(name = "id") Integer id) {
+    return studentService.deleteStudent(id);
+  }
+
   @GetMapping(path = "/list")
   @Override
   public List<Student> getAll() {
     return studentService.getAll();
-  };
-
-  @Override
-  public boolean deleteStudent(Student student) {
-    return false;
   }
-
 }

@@ -8,7 +8,9 @@ public interface IStudentController {
 
   Student saveStudent(Student student);
 
-  List<Student> getAll();
+  Student getStudentById(Integer student);
 
-  boolean deleteStudent(Student student);
+  boolean deleteStudent(Integer student);
+
+  List<Student> getAll();
 }

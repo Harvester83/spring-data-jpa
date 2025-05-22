@@ -17,6 +17,7 @@ import java.util.Date;
 public class Student {
 
   @Id
+  @JsonProperty("id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
