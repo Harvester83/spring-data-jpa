@@ -8,6 +8,8 @@ public interface IStudentController {
 
   Student saveStudent(Student student);
 
+  Student updateStudent(Integer id, Student student);
+
   Student getStudentById(Integer student);
 
   boolean deleteStudent(Integer student);
