@@ -1,12 +1,16 @@
 package com.rs.controller.impl;
 
 import com.rs.controller.IStudentController;
+import com.rs.dto.StudentCreateDto;
+import com.rs.dto.StudentDto;
 import com.rs.entity.Student;
+import com.rs.mapper.StudentMapper;
 import com.rs.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/rest/api/student")
@@ -15,34 +19,33 @@ public class StudentControllerImpl implements IStudentController {
   @Autowired
   private IStudentService studentService;
 
-  // Using DTO
   @PostMapping(path = "/save")
-  @Override
-  public Student saveStudent(@RequestBody Student student) {
-    return studentService.saveStudent(student);
+  public StudentDto saveStudent(@RequestBody StudentCreateDto studentDto) {
+    Student saved = studentService.saveStudent(StudentMapper.toEntity(studentDto));
+    return StudentMapper.toDto(saved);
   }
 
   @GetMapping(path = "/{id}")
-  @Override
-  public Student getStudentById(@PathVariable(name = "id") Integer id) {
-    return studentService.getStudentById(id);
+  public StudentDto getStudentById(@PathVariable Integer id) {
+    return StudentMapper.toDto(studentService.getStudentById(id));
   }
 
-  @DeleteMapping(path = "/{id}")
-  @Override
-  public boolean deleteStudent(@PathVariable(name = "id") Integer id) {
-    return studentService.deleteStudent(id);
-  }
-
-  @PutMapping(path="/{id}")
-  @Override
-  public Student updateStudent(@PathVariable(name= "id") Integer id, @RequestBody Student student) {
-    return studentService.updateStudent(id, student);
+  @PutMapping(path = "/{id}")
+  public StudentDto updateStudent(@PathVariable Integer id, @RequestBody StudentCreateDto dto) {
+    Student updated = studentService.updateStudent(id, StudentMapper.toEntity(dto));
+    return StudentMapper.toDto(updated);
   }
 
   @GetMapping(path = "/list")
-  @Override
-  public List<Student> getAll() {
-    return studentService.getAll();
+  public List<StudentDto> getAll() {
+    return studentService.getAll()
+        .stream()
+        .map(StudentMapper::toDto)
+        .collect(Collectors.toList());
+  }
+
+  @DeleteMapping(path = "/{id}")
+  public boolean deleteStudent(@PathVariable Integer id) {
+    return studentService.deleteStudent(id);
   }
 }
