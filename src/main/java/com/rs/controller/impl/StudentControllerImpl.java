@@ -25,10 +25,10 @@ public class StudentControllerImpl implements IStudentController {
     return StudentMapper.toDto(saved);
   }
 
-  @GetMapping(path = "/{id}")
-  public StudentDto getStudentById(@PathVariable Integer id) {
-    return StudentMapper.toDto(studentService.getStudentById(id));
-  }
+    @GetMapping(path = "/{id}")
+    public StudentDto getStudentById(@PathVariable Integer id) {
+      return StudentMapper.toDto(studentService.getStudentById(id));
+    }
 
   @PutMapping(path = "/{id}")
   public StudentDto updateStudent(@PathVariable Integer id, @RequestBody StudentCreateDto dto) {
