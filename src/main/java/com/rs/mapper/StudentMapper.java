@@ -11,7 +11,7 @@ public class StudentMapper {
         student.getId(),
         student.getFirstName(),
         student.getLastName()
-    )
+    );
   }
 
   public static Student toEntity(StudentCreateDto dto) {

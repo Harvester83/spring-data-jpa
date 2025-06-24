@@ -2,8 +2,8 @@ package com.rs.dto;
 
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Data;
 
 @Table(name = "student", schema = "public")
 @Data
@@ -12,4 +12,7 @@ import lombok.NoArgsConstructor;
 public class StudentDto {
   private String firstName;
   private String lastName;
+
+  public StudentDto(Integer id, String firstName, String lastName) {
+  }
 }
