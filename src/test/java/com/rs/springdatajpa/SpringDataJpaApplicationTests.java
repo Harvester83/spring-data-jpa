@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class SpringDataJpaApplicationTests {
 
+  // test: add smoke test
   @Test
   void contextLoads() {
   }
