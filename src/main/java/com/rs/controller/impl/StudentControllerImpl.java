@@ -21,8 +21,7 @@ public class StudentControllerImpl implements IStudentController {
 
   @PostMapping(path = "/save")
   public StudentDto saveStudent(@RequestBody StudentCreateDto studentDto) {
-    Student saved = studentService.saveStudent(StudentMapper.toEntity(studentDto));
-    return StudentMapper.toDto(saved);
+    return studentService.saveStudent(studentDto);
   }
 
     @GetMapping(path = "/{id}")

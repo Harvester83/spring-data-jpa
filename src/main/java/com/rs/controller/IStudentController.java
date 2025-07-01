@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface IStudentController {
 
-  StudentDto  saveStudent(StudentCreateDto student);
+  StudentDto saveStudent(StudentCreateDto student);
 
-  StudentDto  updateStudent(Integer id, StudentCreateDto  student);
+  StudentDto updateStudent(Integer id, StudentCreateDto  student);
 
   StudentDto getStudentById(Integer student);
 

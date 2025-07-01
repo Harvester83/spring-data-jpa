@@ -1,8 +1,11 @@
 package com.rs.service.impl;
 
+import com.rs.dto.StudentCreateDto;
+import com.rs.dto.StudentDto;
 import com.rs.entity.Student;
 import com.rs.repository.StudentRepository;
 import com.rs.service.IStudentService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,8 +21,16 @@ public class StudentServiceImpl implements IStudentService {
   }
 
   @Override
-  public Student saveStudent(Student student) {
-    return studentRepository.save(student);
+  public StudentDto saveStudent(StudentCreateDto studentCreateDto) {
+
+    StudentDto response = new StudentDto();
+    Student student = new Student();
+    BeanUtils.copyProperties(studentCreateDto, student);
+
+    Student dbStudent = studentRepository.save(student);
+    BeanUtils.copyProperties(dbStudent, response);
+
+    return response;
   }
 
   @Override

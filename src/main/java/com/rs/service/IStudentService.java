@@ -1,11 +1,13 @@
 package com.rs.service;
 
+import com.rs.dto.StudentCreateDto;
+import com.rs.dto.StudentDto;
 import com.rs.entity.Student;
 
 import java.util.List;
 
 public interface IStudentService {
-  public Student saveStudent(Student student);
+  public StudentDto saveStudent(StudentCreateDto studentCreateDto );
 
   public Student getStudentById(Integer id);
 
