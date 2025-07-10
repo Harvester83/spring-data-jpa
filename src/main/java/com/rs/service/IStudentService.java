@@ -15,5 +15,5 @@ public interface IStudentService {
 
   public boolean deleteStudent(Integer id);
 
-  public List<Student> getAll();
+  public List<StudentDto> getAll();
 }

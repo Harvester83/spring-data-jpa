@@ -37,10 +37,8 @@ public class StudentControllerImpl implements IStudentController {
 
   @GetMapping(path = "/list")
   public List<StudentDto> getAll() {
-    return studentService.getAll()
-        .stream()
-        .map(StudentMapper::toDto)
-        .collect(Collectors.toList());
+    return studentService.getAll();
+
   }
 
   @DeleteMapping(path = "/{id}")
