@@ -13,6 +13,6 @@ public class StudentDto {
   private String firstName;
   private String lastName;
 
-  public StudentDto(Integer id, String firstName, String lastName) {
+  public StudentDto(Integer sid, String firstName, String lastName) {
   }
 }

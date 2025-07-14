@@ -15,9 +15,9 @@ import java.util.Date;
 public class Student {
 
   @Id
-  @JsonProperty("id")
+  @JsonProperty("sid")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+  private Integer sid;
 
   @JsonProperty("firstName")
   private String firstName;

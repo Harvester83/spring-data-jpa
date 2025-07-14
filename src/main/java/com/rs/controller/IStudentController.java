@@ -3,6 +3,7 @@ package com.rs.controller;
 import com.rs.dto.StudentCreateDto;
 import com.rs.dto.StudentDto;
 import com.rs.entity.Student;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -12,9 +13,9 @@ public interface IStudentController {
 
   StudentDto updateStudent(Integer id, StudentCreateDto  student);
 
-  StudentDto getStudentById(Integer student);
+  StudentDto getStudentById(Integer sid);
 
-  boolean deleteStudent(Integer student);
+  ResponseEntity<Void> deleteStudent(Integer student);
 
   List<StudentDto> getAll();
 }

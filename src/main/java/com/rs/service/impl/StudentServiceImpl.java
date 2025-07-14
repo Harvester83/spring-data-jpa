@@ -6,7 +6,10 @@ import com.rs.entity.Student;
 import com.rs.repository.StudentRepository;
 import com.rs.service.IStudentService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,34 +38,43 @@ public class StudentServiceImpl implements IStudentService {
   }
 
   @Override
-  public Student getStudentById(Integer id) {
-    Optional<Student> optional = studentRepository.findById(id);
-    return optional.orElse(null);
+  public StudentDto getStudentById(Integer sid) {
+    StudentDto studentDto = new StudentDto();
+
+    Optional<Student> optional = studentRepository.findById(sid);
+
+    if (optional.isPresent()) {
+      Student dbStudent = optional.get();
+      BeanUtils.copyProperties(dbStudent, studentDto);
+    }
+
+    return studentDto;
   }
 
   @Override
   public Student updateStudent(Integer id, Student updateStudent) {
-    Student dbStudent = getStudentById(id);
+//    Student dbStudent = getStudentById(id);
 
-    if (updateStudent != null) {
-      dbStudent.setFirstName(updateStudent.getFirstName());
-      dbStudent.setLastName(updateStudent.getLastName());
-      dbStudent.setBirthOfDay(updateStudent.getBirthOfDay());
-
-      return studentRepository.save(dbStudent);
-    }
+//    if (updateStudent != null) {
+//      dbStudent.setFirstName(updateStudent.getFirstName());
+//      dbStudent.setLastName(updateStudent.getLastName());
+//      dbStudent.setBirthOfDay(updateStudent.getBirthOfDay());
+//
+//      return studentRepository.save(dbStudent);
+//    }
 
     return null;
   }
 
-  @Override
-  public boolean deleteStudent(Integer id) {
-    if (studentRepository.existsById(id)) {
-      studentRepository.deleteById(id);
-      return true;
-    }
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> deleteStudent(Integer sid) {
+    try {
+      studentRepository.deleteById(sid);
+      return ResponseEntity.noContent().build(); // HTTP 204
 
-    return false;
+    } catch (EmptyResultDataAccessException ex) {
+      return ResponseEntity.notFound().build(); // HTTP 204
+    }
   }
 
   @Override
@@ -71,7 +83,7 @@ public class StudentServiceImpl implements IStudentService {
     List<Student> studentList = studentRepository.findAll();
 
 
-    for(Student student : studentList) {
+    for (Student student : studentList) {
       StudentDto studentDto = new StudentDto();
 
       BeanUtils.copyProperties(student, studentDto);
@@ -81,5 +93,4 @@ public class StudentServiceImpl implements IStudentService {
     return dtoList;
 
   }
-
 }

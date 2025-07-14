@@ -7,6 +7,7 @@ import com.rs.entity.Student;
 import com.rs.mapper.StudentMapper;
 import com.rs.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,10 +25,10 @@ public class StudentControllerImpl implements IStudentController {
     return studentService.saveStudent(studentDto);
   }
 
-    @GetMapping(path = "/{id}")
-    public StudentDto getStudentById(@PathVariable Integer id) {
-      return StudentMapper.toDto(studentService.getStudentById(id));
-    }
+  @GetMapping(path = "/{id}")
+  public StudentDto getStudentById(@PathVariable Integer id) {
+    return studentService.getStudentById(id);
+  }
 
   @PutMapping(path = "/{id}")
   public StudentDto updateStudent(@PathVariable Integer id, @RequestBody StudentCreateDto dto) {
@@ -38,11 +39,10 @@ public class StudentControllerImpl implements IStudentController {
   @GetMapping(path = "/list")
   public List<StudentDto> getAll() {
     return studentService.getAll();
-
   }
 
   @DeleteMapping(path = "/{id}")
-  public boolean deleteStudent(@PathVariable Integer id) {
+  public ResponseEntity<Void> deleteStudent(@PathVariable Integer id) {
     return studentService.deleteStudent(id);
   }
 }
