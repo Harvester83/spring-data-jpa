@@ -12,9 +12,9 @@ public interface IStudentService {
 
   public StudentDto getStudentById(Integer sid);
 
-  public Student updateStudent(Integer id, Student student);
+  public StudentDto updateStudent(Integer id, StudentCreateDto studentCreateDto);
 
-  public ResponseEntity<Void> deleteStudent(Integer id);
+  public ResponseEntity<Void> deleteStudent(Integer sid);
 
   public List<StudentDto> getAll();
 }

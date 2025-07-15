@@ -7,9 +7,13 @@ import com.rs.repository.StudentRepository;
 import com.rs.service.IStudentService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,28 +56,33 @@ public class StudentServiceImpl implements IStudentService {
   }
 
   @Override
-  public Student updateStudent(Integer id, Student updateStudent) {
-//    Student dbStudent = getStudentById(id);
+  public StudentDto updateStudent(Integer id, StudentCreateDto studentCreateDto) {
 
-//    if (updateStudent != null) {
-//      dbStudent.setFirstName(updateStudent.getFirstName());
-//      dbStudent.setLastName(updateStudent.getLastName());
-//      dbStudent.setBirthOfDay(updateStudent.getBirthOfDay());
-//
-//      return studentRepository.save(dbStudent);
-//    }
+    StudentDto studentDto = new StudentDto();
+    Optional<Student> optional = studentRepository.findById(id);
+
+    if (optional.isPresent()) {
+      Student dbStudent = optional.get();
+
+      dbStudent.setFirstName(studentCreateDto.getFirstName());
+      dbStudent.setLastName(studentCreateDto.getLastName());
+
+      Student updateStudent = studentRepository.save(dbStudent);
+
+      BeanUtils.copyProperties(updateStudent, studentDto);
+
+      return studentDto;
+    }
 
     return null;
   }
 
-  @DeleteMapping("/{id}")
   public ResponseEntity<Void> deleteStudent(Integer sid) {
     try {
       studentRepository.deleteById(sid);
-      return ResponseEntity.noContent().build(); // HTTP 204
-
+      return ResponseEntity.noContent().build(); // HTTP 204 без тела
     } catch (EmptyResultDataAccessException ex) {
-      return ResponseEntity.notFound().build(); // HTTP 204
+      return ResponseEntity.notFound().build(); // HTTP 404
     }
   }
 

@@ -4,14 +4,12 @@ import com.rs.controller.IStudentController;
 import com.rs.dto.StudentCreateDto;
 import com.rs.dto.StudentDto;
 import com.rs.entity.Student;
-import com.rs.mapper.StudentMapper;
 import com.rs.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/rest/api/student")
@@ -30,10 +28,10 @@ public class StudentControllerImpl implements IStudentController {
     return studentService.getStudentById(id);
   }
 
-  @PutMapping(path = "/{id}")
-  public StudentDto updateStudent(@PathVariable Integer id, @RequestBody StudentCreateDto dto) {
-    Student updated = studentService.updateStudent(id, StudentMapper.toEntity(dto));
-    return StudentMapper.toDto(updated);
+  @PutMapping(path = "/update/{sid}")
+  @Override
+  public StudentDto updateStudent(@PathVariable(name = "sid") Integer sid, @RequestBody StudentCreateDto studentCreateDto) {
+    return studentService.updateStudent(sid, studentCreateDto);
   }
 
   @GetMapping(path = "/list")
@@ -41,8 +39,8 @@ public class StudentControllerImpl implements IStudentController {
     return studentService.getAll();
   }
 
-  @DeleteMapping(path = "/{id}")
-  public ResponseEntity<Void> deleteStudent(@PathVariable Integer id) {
-    return studentService.deleteStudent(id);
+  @DeleteMapping(path = "/{sid}")
+  public ResponseEntity<Void> deleteStudent(@PathVariable Integer sid) {
+    return studentService.deleteStudent(sid);
   }
 }
