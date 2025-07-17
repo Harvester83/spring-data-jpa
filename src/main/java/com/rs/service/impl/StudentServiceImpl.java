@@ -56,16 +56,17 @@ public class StudentServiceImpl implements IStudentService {
   }
 
   @Override
-  public StudentDto updateStudent(Integer id, StudentCreateDto studentCreateDto) {
+  public StudentDto updateStudent(Integer sid, StudentCreateDto studentCreateDto) {
 
     StudentDto studentDto = new StudentDto();
-    Optional<Student> optional = studentRepository.findById(id);
+    Optional<Student> optional = studentRepository.findById(sid);
 
     if (optional.isPresent()) {
       Student dbStudent = optional.get();
 
       dbStudent.setFirstName(studentCreateDto.getFirstName());
       dbStudent.setLastName(studentCreateDto.getLastName());
+      dbStudent.setBirthOfDay(studentCreateDto.getBirthOfDay());
 
       Student updateStudent = studentRepository.save(dbStudent);
 

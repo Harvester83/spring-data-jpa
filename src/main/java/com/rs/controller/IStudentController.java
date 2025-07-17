@@ -11,7 +11,7 @@ public interface IStudentController {
 
   StudentDto saveStudent(StudentCreateDto student);
 
-  StudentDto updateStudent(Integer id, StudentCreateDto studentCreateDto);
+  StudentDto updateStudent(Integer sid, StudentCreateDto studentCreateDto);
 
   StudentDto getStudentById(Integer sid);
 

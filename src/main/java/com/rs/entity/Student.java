@@ -1,5 +1,6 @@
 package com.rs.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -26,6 +27,6 @@ public class Student {
   private String lastName;
 
   @JsonProperty("birthOfDay")
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS", timezone = "UTC")
   private Date birthOfDay;
 }
