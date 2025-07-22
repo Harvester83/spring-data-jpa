@@ -90,9 +90,8 @@ public class StudentServiceImpl implements IStudentService {
   @Override
   public List<StudentDto> getAll() {
     List<StudentDto> dtoList = new ArrayList<>();
-    List<Student> studentList = studentRepository.findAll();
-
-
+    List<Student> studentList = studentRepository.findAllStudent();
+    
     for (Student student : studentList) {
       StudentDto studentDto = new StudentDto();
 
@@ -101,6 +100,5 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     return dtoList;
-
   }
 }
