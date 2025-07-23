@@ -45,7 +45,7 @@ public class StudentServiceImpl implements IStudentService {
   public StudentDto getStudentById(Integer sid) {
     StudentDto studentDto = new StudentDto();
 
-    Optional<Student> optional = studentRepository.findById(sid);
+    Optional<Student> optional = studentRepository.findStudentById(sid);
 
     if (optional.isPresent()) {
       Student dbStudent = optional.get();
@@ -91,7 +91,7 @@ public class StudentServiceImpl implements IStudentService {
   public List<StudentDto> getAll() {
     List<StudentDto> dtoList = new ArrayList<>();
     List<Student> studentList = studentRepository.findAllStudent();
-    
+
     for (Student student : studentList) {
       StudentDto studentDto = new StudentDto();
 
