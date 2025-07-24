@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Integer> {
-  
+
   @Query(value = "from Student", nativeQuery = false)
   List<Student> findAllStudent();
 
