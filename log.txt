@@ -1,0 +1,10 @@
+2025-07-28T22:27:18.594+04:00  INFO 21352 --- [spring-data-jpa] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-07-28T22:27:18.936+04:00  WARN 21352 --- [spring-data-jpa] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-28T22:27:19.233+04:00  INFO 21352 --- [spring-data-jpa] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-28T22:27:19.243+04:00  INFO 21352 --- [spring-data-jpa] [           main] c.rs.starter.SpringDataJpaApplication    : Started SpringDataJpaApplication in 3.824 seconds (process running for 4.353)
+2025-07-28T22:27:31.430+04:00  INFO 21352 --- [spring-data-jpa] [nio-8080-exec-6] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-28T22:27:31.430+04:00  INFO 21352 --- [spring-data-jpa] [nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-07-28T22:27:31.431+04:00  INFO 21352 --- [spring-data-jpa] [nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-07-28T22:27:31.558+04:00  WARN 21352 --- [spring-data-jpa] [nio-8080-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver :
+ Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in
+ public com.rs.dto.StudentDto com.rs.controller.impl.StudentControllerImpl.saveStudent(com.rs.dto.StudentCreateDto): [Field error in object 'studentCreateDto' on field 'firstName': rejected value [null]; codes [NotEmpty.studentCreateDto.firstName,NotEmpty.firstName,NotEmpty.java.lang.String,NotEmpty]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [studentCreateDto.firstName,firstName]; arguments []; default message [firstName]]; default message [Please provide firstName]] ]

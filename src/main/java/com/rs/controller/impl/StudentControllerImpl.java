@@ -3,8 +3,8 @@ package com.rs.controller.impl;
 import com.rs.controller.IStudentController;
 import com.rs.dto.StudentCreateDto;
 import com.rs.dto.StudentDto;
-import com.rs.entity.Student;
 import com.rs.service.IStudentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,7 @@ public class StudentControllerImpl implements IStudentController {
   private IStudentService studentService;
 
   @PostMapping(path = "/save")
-  public StudentDto saveStudent(@RequestBody StudentCreateDto studentDto) {
+  public StudentDto saveStudent(@RequestBody @Valid StudentCreateDto studentDto) {
     return studentService.saveStudent(studentDto);
   }
 
